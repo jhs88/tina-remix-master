@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "name": "Tina User",
+      "username": "admin",
+      "password": {
+        "value": "admin",
+        "passwordChangeRequired": true
+      }
+    }
+  ]
+}

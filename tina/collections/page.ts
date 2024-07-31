@@ -1,7 +1,6 @@
-/**
- * @type {import('tinacms').Collection}
- */
-export default {
+import type { Collection } from "tinacms";
+
+export const PageCollection: Collection = {
   label: "Page Content",
   name: "page",
   path: "content/page",
@@ -19,7 +18,9 @@ export default {
       if (document._sys.filename === "home") {
         return `/`;
       }
-      return undefined;
+      return `${document._sys.filename}`;
     },
   },
 };
+
+export default PageCollection;
