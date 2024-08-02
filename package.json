@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.9.2",
-    "@remix-run/eslint-config": "^2.9.2",
+    "@remix-run/eslint-config": "^2.11.0",
     "@tinacms/cli": "^1.5.52",
     "@tinacms/datalayer": "1.2.39",
     "@types/node": "^22.0.0",
