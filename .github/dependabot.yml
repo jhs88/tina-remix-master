@@ -8,7 +8,6 @@ updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: "monthly"
     allow:
-      - dependency-name: "tinacms"
-      - dependency-name: "@tinacms*"
+      - dependency-type: "all"
