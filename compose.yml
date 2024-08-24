@@ -1,20 +1,27 @@
 services:
-  myapplication:
+  test-mongo:
     image: mongodb/mongodb-community-server
     environment:
-      - CONN_STR=mongodb://user:pass@host.docker.internal
+      CONN_STR: mongodb://user:pass@host.docker.internal
     command: '/bin/bash -c "sleep 5; mongosh $$CONN_STR --eval \"show dbs;\""'
-    depends_on:
-      - mongodb
+    depends_on: [mongodb]
   mongodb:
     image: mongodb/mongodb-community-server
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-    ports:
-      - 27017:27017
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports: [27017:27017]
     volumes:
       - mongo-data:/data/db
-
+  remix:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file: [.env]
+    ports: [3000:3000]
+    depends_on: [mongodb]
+    volumes:
+      - ./node_modules:/opt/remix/node_modules
+      - ./tina/__generated__:/opt/remix/tina/__generated__
 volumes:
   mongo-data:

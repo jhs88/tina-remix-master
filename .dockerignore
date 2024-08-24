@@ -1,0 +1,12 @@
+.git
+.github
+.dockerignore
+.gitignore
+.prettierrc
+.env*
+README.md
+compose.yml
+node_modules
+public/admin
+tina/__generated__
+build

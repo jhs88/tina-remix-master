@@ -63,7 +63,7 @@ function MakeRemixApiHandler({
           _opts: RemixRouteHandlerOptions["options"],
         ) => {
           const body = await req2.json();
-          console.log("Tina API Request Body:", body);
+          // console.log("Tina API Request Body:", body);
           if (req2.method !== "POST") {
             return {
               statusCode: 405,
