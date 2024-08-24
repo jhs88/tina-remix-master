@@ -2,7 +2,8 @@
   "users": [
     {
       "name": "Tina User",
-      "username": "admin",
+      "email": "tina@exampple.com",
+      "username": "user",
       "password": {
         "value": "admin",
         "passwordChangeRequired": true

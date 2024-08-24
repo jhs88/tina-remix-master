@@ -8,6 +8,8 @@ export default function Layout(props: { children: React.ReactNode }) {
       }}
     >
       <header>
+        <img src="tina.svg" alt="tina" style={{ width: "3%" }} />
+        {" | "}
         <Link to="/">Home</Link>
         {" | "}
         <Link to="/posts">Posts</Link>
