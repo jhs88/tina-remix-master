@@ -3,7 +3,7 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json, Link, useLoaderData } from "@remix-run/react";
 import { useTina } from "tinacms/dist/react";
 
-import { client } from "tina/__generated__/client";
+import client from "tina/__generated__/databaseClient";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { data, query, variables } = await client.queries.postConnection();
