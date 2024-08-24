@@ -11,7 +11,7 @@ const owner = (process.env.GITHUB_OWNER ??
 const repo = (process.env.GITHUB_REPO ??
   process.env.VERCEL_GIT_REPO_SLUG) as string;
 const branch =
-  process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || "main";
+  process.env.GITHUB_BRANCH ?? process.env.VERCEL_GIT_COMMIT_REF ?? "main";
 
 if (!branch) {
   throw new Error(

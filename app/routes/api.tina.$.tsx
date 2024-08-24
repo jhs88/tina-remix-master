@@ -1,38 +1,26 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-
-import { json } from "@remix-run/react";
-import { LocalBackendAuthProvider, TinaNodeBackend } from "@tinacms/datalayer";
 import {
-  AuthJsBackendAuthProvider,
-  TinaAuthJSOptions,
-} from "tinacms-authjs/dist";
-import databaseClient from "tina/database";
+  json,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
+import { LocalBackendAuthProvider } from "@tinacms/datalayer";
+
+import databaseClient from "tina/__generated__/databaseClient";
+import { TinaRemixBackend } from "tina/api";
+import CustomBackendAuth from "tina/auth";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
+const handler = TinaRemixBackend({
+  authProvider: isLocal ? LocalBackendAuthProvider() : CustomBackendAuth(),
+  databaseClient,
+});
+
 export const loader = async (args: LoaderFunctionArgs) => {
-  const { queries } = databaseClient;
-
-  return json({
-    queries,
-  });
+  const { body } = await handler(args);
+  return json(body);
 };
-
-export const actions = async (args: ActionFunctionArgs) => {
-  const { request, authenticate, authorize } = databaseClient;
-  return { request, authenticate, authorize };
+export const action = async (args: ActionFunctionArgs) => {
+  const { body } = await handler(args);
+  return json(body);
 };
-
-export default function Api() {
-  return TinaNodeBackend({
-    authProvider: isLocal
-      ? LocalBackendAuthProvider()
-      : AuthJsBackendAuthProvider({
-          authOptions: TinaAuthJSOptions({
-            databaseClient,
-            secret: process.env.NEXTAUTH_SECRET as string,
-          }),
-        }),
-    databaseClient,
-  });
-}
