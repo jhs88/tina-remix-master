@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tinacms build -c \"remix vite:build\"",
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"remix vite:dev\"",
-    "dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"remix vite:dev\"",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"remix vite:dev --host\"",
+    "dev:prod": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"remix vite:dev --host\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "tinacms build -c \"remix-serve ./build/server/index.js\"",
     "typecheck": "tsc"

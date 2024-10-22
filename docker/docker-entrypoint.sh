@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
-# Start the application
-yarn install --frozen-lockfile
-yarn run build
-yarn start
+
+if [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; then
+    yarn install --frozen-lockfile
+fi
+
+if [ ! -d "build" ] || [ -z "$(ls -A build)" ]; then
+    yarn run build
+fi
+
+exec "$@"
